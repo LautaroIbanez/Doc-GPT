@@ -3,9 +3,8 @@ Asistente analista de documentación técnica
 
 La estructura es la siguiente: 
 Doc-GPT:
-|
 |- test.py
 |
-|- templates|
+|- templates/
             |- upload.html
             |- result.html
