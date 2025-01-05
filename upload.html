@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Documentos Técnicos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h1>Analizador de Documentos Técnicos</h1>
+            </div>
+            <div class="card-body">
+                <form action="/" method="post" enctype="multipart/form-data">
+                    <!-- Campo para seleccionar archivos -->
+                    <div class="mb-3">
+                        <label for="files" class="form-label">Selecciona uno o varios PDFs (Opcional si ya cargaste uno):</label>
+                        <input type="file" name="files" id="files" class="form-control" multiple>
+                    </div>
+                    
+                    <!-- Lista de archivos cargados -->
+                    {% if uploaded_files %}
+                    <div class="mb-3">
+                        <h5 class="text-info">Archivos cargados:</h5>
+                        <ul class="list-group">
+                            {% for file_path in uploaded_files %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('download_file', filename=file_path.split('/')[-1]) }}" target="_blank">
+                                    {{ file_path.split('/')[-1] }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Campo para escribir una pregunta -->
+                    <div class="mb-3">
+                        <label for="question" class="form-label">Escribe tu pregunta:</label>
+                        <input type="text" name="question" id="question" class="form-control" placeholder="Ejemplo: ¿Cuál es la fecha de validez del documento?" required>
+                    </div>
+
+                    <!-- Botón para enviar el formulario -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Consultar</button>
+                    </div>
+                </form>
+                
+                <!-- Mostrar la respuesta de ChatGPT -->
+                {% if response %}
+                <hr>
+                <div class="mt-4">
+                    <h4 class="text-success">Respuesta de ChatGPT:</h4>
+                    <div class="alert alert-info">
+                        {{ response }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer text-center">
+                <small class="text-muted">Desarrollado con Flask y OpenAI</small>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
