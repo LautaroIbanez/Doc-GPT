@@ -1,10 +1,5 @@
 # Doc-GPT
 Asistente analista de documentación técnica
 
-La estructura es la siguiente: 
-Doc-GPT:
-|- test.py
-|
-|- templates/
-            |- upload.html
-            |- result.html
+En la carpeta del proyecto debe encontrarse el archivo "test.py" y la carpeta "templates". 
+Dentro de la carpeta "templates" van los archivos "upload.html" y "result.html"
